@@ -1,0 +1,7 @@
+"stop_id","stop_city"
+"6","Torino"
+"7","Torino"
+"8","Torino"
+"9","Torino"
+"10","Torino"
+"11","Torino"

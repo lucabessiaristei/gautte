@@ -1,0 +1,7 @@
+"timetable_id","route_id","direction_id","start_date","end_date","monday","tuesday","wednesday","thursday","friday","saturday","sunday","start_time","end_time","timetable_label","service_notes","orientation","timetable_page_id","timetable_sequence","direction_name","include_exceptions","show_trip_continuation"
+"1","10U","1","20250904","20251031","1","1","1","1","1","0","0","04:00:00","07:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI MATTUTINI","frequenza","horizontal","10U_As","0","","0","0"
+"2","10U","1","20250904","20251031","1","1","1","1","1","0","0","21:00:00","27:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI SERALI","frequenza","horizontal","10U_As","1","","0","0"
+"3","10U","1","20250904","20251031","0","0","0","0","0","1","0","04:00:00","07:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI MATTUTINI","frequenza","horizontal","10U_As","2","","0","0"
+"4","10U","1","20250904","20251031","0","0","0","0","0","1","0","21:00:00","27:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI SERALI","frequenza","horizontal","10U_As","3","","0","0"
+"5","10U","1","20250904","20251031","0","0","0","0","0","0","1","04:00:00","09:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI MATTUTINI","frequenza","horizontal","10U_As","4","","0","0"
+"6","10U","1","20250904","20251031","0","0","0","0","0","0","1","21:00:00","27:00:00","DIREZIONE: C. SETTEMBRINI Fer./P.CAIO MARIO Fest., PASSAGGI SERALI","frequenza","horizontal","10U_As","5","","0","0"

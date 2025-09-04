@@ -1,0 +1,7 @@
+"route_id","agency_id","route_short_name","route_long_name","route_desc","route_type","route_url","route_color","route_text_color","route_sort_order"
+"METROU","U","M1","metropolitana, stazione Fermi (Collegno) - stazione Bengasi","STAZIONE BENGASI M1 -- STAZIONE FERMI M1 (COLLEGNO)","1","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=METRO&Regol=GE","FF0000","FFFFFF","1"
+"4U","U","4","via delle Querce - strada del Drosso","STR.DEL DROSSO -- V. DELLE QUERCE","0","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=4&Regol=GE","CC9900","0000FF","3"
+"3U","U","3","piazzale Vallette - corso Tortona","CORSO TORTONA -- PIAZZALE VALLETTE","0","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=3&Regol=GE","CC9900","0000FF","2"
+"6U","U","6","piazza Hermada - piazza Carlo Felice","PIAZZA CARLO FELICE -- PIAZZA HERMADA","3","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=6&Regol=GE","FF9900","0000FF","21"
+"7U","T","7","linea storica, piazza Castello - Porta Nuova","PORTA NUOVA -- PIAZZA CASTELLO","0","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=7&Regol=OR","33CC00","000000","4"
+"9U","U","9","piazza Stampalia - corso D'Azeglio","CORSO D'AZEGLIO -- PIAZZA STAMPALIA","0","http://www.gtt.to.it/cms/percorari/urbano?view=percorsi&bacino=U&linea=9&Regol=GE","CC9900","0000FF","5"

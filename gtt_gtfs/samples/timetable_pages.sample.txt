@@ -1,0 +1,7 @@
+"timetable_page_id","timetable_page_label","filename"
+"102U_As","LINEA 102 - navetta interna Cimitero Parco","102U_As.html"
+"102U_Di","LINEA 102 - navetta interna Cimitero Parco","102U_Di.html"
+"1068E_As","LINEA 1068 - Collegno - Condove","1068E_As.html"
+"1068E_Di","LINEA 1068 - Collegno - Condove","1068E_Di.html"
+"1085E_As","LINEA 1085 - Torino - Fiat Rivalta","1085E_As.html"
+"1085E_Di","LINEA 1085 - Torino - Fiat Rivalta","1085E_Di.html"

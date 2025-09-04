@@ -1,0 +1,7 @@
+"route_id","service_id","trip_id","trip_headsign","trip_short_name","direction_id","block_id","shape_id","wheelchair_accessible","bikes_allowed","limited_route"
+"2U","640582U","27276718U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"
+"2U","640582U","27276719U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"
+"2U","640582U","27276720U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"
+"2U","640582U","27276721U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"
+"2U","640582U","27276722U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"
+"2U","640582U","27276723U","MILLEFONTI, VIA CORRADINO","","1","2-36","2UAs02AA01","1","","0"

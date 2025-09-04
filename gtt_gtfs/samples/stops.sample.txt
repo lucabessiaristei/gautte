@@ -1,0 +1,7 @@
+"stop_id","stop_code","stop_name","stop_desc","stop_lat","stop_lon","zone_id","stop_url","location_type","parent_station","stop_timezone","wheelchair_boarding"
+"6","10","Fermata 10 - RUBIANA","RUBIANA - TESORIERA","45.07545","7.63915","0","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=10","","","Europe/Rome","1"
+"7","100","Fermata 100 - TOSCANA","C. POTENZA N.102 / A","45.09583","7.65728","0","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=100","","","Europe/Rome","1"
+"8","1000","Fermata 1000 - CIMABUE","V. RUBINO N.79","45.03807","7.61905","0","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=1000","","","Europe/Rome","1"
+"8324","10001","Fermata 10001 - FIOCHETTO","AUTOSTAZIONE DORA","45.07641","7.68937","2","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=10001","","","Europe/Rome","2"
+"9","1001","Fermata 1001 - INDUNO","C. TAZZOLI N.221","45.03665","7.61937","0","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=1001","","","Europe/Rome","1"
+"10","1002","Fermata 1002 - INDUNO","C. TAZZOLI N.202","45.0369","7.61973","0","http://www.gtt.to.it/cms/percorari/arrivi?option=com_gtt&view=palina&palina=1002","","","Europe/Rome","1"
