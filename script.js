@@ -1,359 +1,541 @@
-const MAPTILER_KEY = "JwMEsUIjS86xRPmDczqz";
+// Configuration constants
+const CONFIG = {
+	MAPTILER_KEY: "JwMEsUIjS86xRPmDczqz",
+	INITIAL_CENTER: [45.07, 7.69],
+	INITIAL_ZOOM: 15,
+	MIN_MAP_ZOOM: 10,
+	MAX_MAP_ZOOM: 19,
+	CLUSTER_DISABLE_ZOOM: 17,
+	CLUSTER_MAX_RADIUS: 200,
+	ROUTE_COLORS: {
+		direction0: "#c84949",
+		direction1: "#2b70cb",
+	},
+	STOP_COLORS: {
+		default: "#666666",
+		direction0: "#c84949",
+		direction1: "#2b70cb",
+		both: "#9c27b0",
+		unavailable: "#cccccc",
+	},
+	ICON_SIZES: {
+		stop: [20, 20],
+		user: [24, 24],
+	},
+};
 
-// Vista iniziale Torino
-const INITIAL_CENTER = [45.07, 7.69];
-const INITIAL_ZOOM = 15;
-const MIN_MAP_ZOOM = 10;
-const MIN_LAYER_ZOOM = MIN_MAP_ZOOM - 1;
-const MAX_MAP_ZOOM = 19;
-let currentVisibleRouteId = null;
-let currentVisibleStopId = null;
-let STOP_MARKERS = {};
-let lineMode = false;
-let lineStopMarkers = [];
+// Global state management
+class TransitMapState {
+	constructor() {
+		this.currentVisibleRouteId = null;
+		this.currentVisibleStopId = null;
+		this.lineMode = false;
+		this.stopMarkers = new Map();
+		this.activeShapes = [];
+		this.userMarker = null;
 
+		this.gtfsData = {
+			stops: null,
+			routes: null,
+			trips: null,
+			services: null,
+			shapes: null,
+		};
+	}
+
+	reset() {
+		this.currentVisibleRouteId = null;
+		this.currentVisibleStopId = null;
+		this.lineMode = false;
+	}
+
+	clearShapes() {
+		this.activeShapes.forEach((layer) => map.removeLayer(layer));
+		this.activeShapes.length = 0;
+	}
+}
+
+const state = new TransitMapState();
+
+// SVG Icon creation functions
+class IconFactory {
+	static createStopIcon(color = CONFIG.STOP_COLORS.default) {
+		const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="9" fill="${color}" stroke="white" stroke-width="2"/>
+        <rect x="5" y="6" width="10" height="6" rx="1" fill="white"/>
+        <circle cx="7" cy="14" r="1.5" fill="white"/>
+        <circle cx="13" cy="14" r="1.5" fill="white"/>
+        <rect x="7" y="8" width="6" height="2" fill="${color}"/>
+      </svg>
+    `;
+
+		return L.divIcon({
+			html: svg,
+			className: "custom-stop-icon",
+			iconSize: CONFIG.ICON_SIZES.stop,
+			iconAnchor: [10, 10],
+			popupAnchor: [0, -10],
+		});
+	}
+
+	static createUserIcon() {
+		const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="11" fill="#4285f4" stroke="white" stroke-width="2"/>
+        <circle cx="12" cy="9" r="3" fill="white"/>
+        <path d="M6 19c0-4 2.7-6 6-6s6 2 6 6" fill="white"/>
+      </svg>
+    `;
+
+		return L.divIcon({
+			html: svg,
+			className: "custom-user-icon",
+			iconSize: CONFIG.ICON_SIZES.user,
+			iconAnchor: [12, 12],
+			popupAnchor: [0, -12],
+		});
+	}
+}
+
+// Initialize map
 const map = L.map("map", {
-	center: INITIAL_CENTER,
-	zoom: INITIAL_ZOOM,
-	maxZoom: MAX_MAP_ZOOM,
-	minZoom: MIN_MAP_ZOOM,
+	center: CONFIG.INITIAL_CENTER,
+	zoom: CONFIG.INITIAL_ZOOM,
+	maxZoom: CONFIG.MAX_MAP_ZOOM,
+	minZoom: CONFIG.MIN_MAP_ZOOM,
 });
 
+// Add base layer
 L.maptiler
 	.maptilerLayer({
-		apiKey: MAPTILER_KEY,
-		style: "https://api.maptiler.com/maps/0197657b-84fb-74e1-94aa-0d013b607aa9/style.json?key=" + MAPTILER_KEY,
+		apiKey: CONFIG.MAPTILER_KEY,
+		style: `https://api.maptiler.com/maps/0197657b-84fb-74e1-94aa-0d013b607aa9/style.json?key=${CONFIG.MAPTILER_KEY}`,
 		maxNativeZoom: 19,
-		maxZoom: MAX_MAP_ZOOM,
-		minZoom: MIN_LAYER_ZOOM,
+		maxZoom: CONFIG.MAX_MAP_ZOOM,
+		minZoom: CONFIG.MIN_MAP_ZOOM - 1,
 	})
 	.addTo(map);
 
-// Icone custom
-const stopIcon = L.icon({
-	iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-	iconSize: [22, 22],
-	iconAnchor: [11, 22],
-	popupAnchor: [0, -20],
-});
-
-const userIcon = L.icon({
-	iconUrl: "https://cdn-icons-png.flaticon.com/512/149/149060.png",
-	iconSize: [28, 28],
-	iconAnchor: [14, 28],
-	popupAnchor: [0, -25],
-});
-
-// Cluster per fermate
+// Initialize cluster group
 const clusters = L.markerClusterGroup({
-	disableClusteringAtZoom: 17,
-	maxClusterRadius: 200,
+	disableClusteringAtZoom: CONFIG.CLUSTER_DISABLE_ZOOM,
+	maxClusterRadius: CONFIG.CLUSTER_MAX_RADIUS,
 	spiderfyOnMaxZoom: false,
 	showCoverageOnHover: true,
 	zoomToBoundsOnClick: true,
-	iconCreateFunction: function (cluster) {
+	iconCreateFunction: (cluster) => {
 		const count = cluster.getChildCount();
 		const size = Math.min(60, 45 + count / 20);
 		const opacity = Math.min(1, 0.5 + count / 200);
+
+		const svg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+        <circle cx="${size / 2}" cy="${size / 2}" r="${size / 2 - 1}" 
+                fill="rgba(0, 102, 204, ${opacity})" stroke="white" stroke-width="2"/>
+        <text x="${size / 2}" y="${size / 2}" text-anchor="middle" dy=".3em" 
+              fill="white" font-size="14" font-weight="bold">${count}</text>
+      </svg>
+    `;
+
 		return L.divIcon({
-			html: `<div style="
-              background: rgba(0, 102, 204, ${opacity});
-              width: ${size}px; height: ${size}px;
-              line-height: ${size}px;
-              border-radius: 50%;
-              color: white; text-align: center;
-              font-weight: bold; font-size: 14px;">
-                ${count}
-             </div>`,
+			html: svg,
 			className: "custom-cluster-icon",
 			iconSize: [size, size],
 		});
 	},
 });
+
 map.addLayer(clusters);
 
-// Marker utente
-let userMarker = null;
+// Data loading
+class DataLoader {
+	static async loadAllData() {
+		try {
+			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `public_data/${name}.json`);
 
-// Dati GTFS
-let GTFS_STOPS, GTFS_ROUTES, GTFS_TRIPS, GTFS_SERVICES, GTFS_SHAPES;
+			const responses = await Promise.all(endpoints.map((url) => fetch(url).then((r) => r.json())));
 
-// Layer percorsi attivi
-let activeShapes = [];
+			const [stops, routes, trips, services, shapes] = responses;
 
-// --- Funzioni utili ---
-async function loadData() {
-	try {
-		const [stops, routes, trips, services, shapes] = await Promise.all([
-			fetch("public_data/stops.json").then((r) => r.json()),
-			fetch("public_data/routes.json").then((r) => r.json()),
-			fetch("public_data/trips.json").then((r) => r.json()),
-			fetch("public_data/services.json").then((r) => r.json()),
-			fetch("public_data/shapes.json").then((r) => r.json()),
-		]);
+			state.gtfsData = { stops, routes, trips, services, shapes };
 
-		GTFS_STOPS = stops;
-		GTFS_ROUTES = routes;
-		GTFS_TRIPS = trips;
-		GTFS_SERVICES = services;
-		GTFS_SHAPES = shapes;
-
-		const now = new Date();
-		const today = now.toISOString().split("T")[0];
-		document.getElementById("datePicker").value = today;
-		document.getElementById("timePicker").value = now.toTimeString().slice(0, 5);
-
-		for (const stop of Object.values(GTFS_STOPS)) {
-  const marker = L.marker([stop.stop_lat, stop.stop_lon], { icon: stopIcon });
-
-  marker._stopId = stop.stop_id; // salva stopId dentro il marker
-  marker.bindPopup("<i>Caricamento...</i>");
-  marker.on("click", () => {
-    const popup = marker.getPopup();
-    if (!popup) return;
-    popup.setContent("<i>Caricamento...</i>");
-    setTimeout(() => {
-      const html = popupContent(stop.stop_id);
-      popup.setContent(html);
-    }, 10);
-  });
-
-  clusters.addLayer(marker);
-  STOP_MARKERS[stop.stop_id] = marker; // <— salva il riferimento
-}
-	} catch (err) {
-		alert("Errore durante il caricamento dei dati: " + err.message);
-	}
-}
-
-// unica definizione globale!
-function isTripActive(serviceId, dateStr, timeStr) {
-	const svc = GTFS_SERVICES[serviceId];
-	if (!svc) return false;
-
-	// --- Check date range ---
-	if (dateStr < svc.start_date || dateStr > svc.end_date) return false;
-
-	// --- Check weekday ---
-	const d = new Date(dateStr.slice(0, 4), parseInt(dateStr.slice(4, 6)) - 1, dateStr.slice(6, 8));
-	const dow = d.getDay(); // 0=dom
-	const mapDays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-	if (svc.days[mapDays[dow]] !== 1) return false;
-
-	// --- Check calendar exceptions ---
-	for (const ex of svc.dates) {
-		if (ex.date === dateStr) {
-			return ex.exception_type === 1; // 1=aggiunta, 2=rimozione
+			DataLoader.initializeDateTimeInputs();
+			DataLoader.createStopMarkers();
+		} catch (error) {
+			console.error("Data loading error:", error);
+			alert(`Error loading data: ${error.message}`);
 		}
 	}
 
-	// --- Check time range (se disponibile) ---
-	if (timeStr && svc.start_time && svc.end_time) {
+	static initializeDateTimeInputs() {
+		const now = new Date();
+		const today = now.toISOString().split("T")[0];
+		const currentTime = now.toTimeString().slice(0, 5);
+
+		document.getElementById("datePicker").value = today;
+		document.getElementById("timePicker").value = currentTime;
+	}
+
+	static createStopMarkers() {
+		const { stops } = state.gtfsData;
+
+		Object.values(stops).forEach((stop) => {
+			const marker = L.marker([stop.stop_lat, stop.stop_lon], {
+				icon: IconFactory.createStopIcon(),
+			});
+
+			marker._stopId = stop.stop_id;
+			marker.bindPopup("<i>Loading...</i>");
+			marker.on("click", () => PopupManager.handleMarkerClick(marker, stop.stop_id));
+
+			clusters.addLayer(marker);
+			state.stopMarkers.set(stop.stop_id, marker);
+		});
+	}
+}
+
+// Trip validation
+class TripValidator {
+	static isTripActive(serviceId, dateStr, timeStr) {
+		const service = state.gtfsData.services[serviceId];
+		if (!service) return false;
+
+		// Date range check
+		if (dateStr < service.start_date || dateStr > service.end_date) {
+			return false;
+		}
+
+		// Weekday check
+		if (!TripValidator.isValidWeekday(service, dateStr)) {
+			return false;
+		}
+
+		// Calendar exceptions
+		const exceptionResult = TripValidator.checkCalendarExceptions(service, dateStr);
+		if (exceptionResult !== null) return exceptionResult;
+
+		// Time range check
+		if (timeStr && service.start_time && service.end_time) {
+			return TripValidator.isValidTimeRange(service, timeStr);
+		}
+
+		return true;
+	}
+
+	static isValidWeekday(service, dateStr) {
+		const date = new Date(dateStr.slice(0, 4), parseInt(dateStr.slice(4, 6)) - 1, dateStr.slice(6, 8));
+		const dayOfWeek = date.getDay();
+		const dayNames = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
+		return service.days[dayNames[dayOfWeek]] === 1;
+	}
+
+	static checkCalendarExceptions(service, dateStr) {
+		const exception = service.dates?.find((ex) => ex.date === dateStr);
+		if (exception) {
+			return exception.exception_type === 1;
+		}
+		return null;
+	}
+
+	static isValidTimeRange(service, timeStr) {
 		const [h, m] = timeStr.split(":").map(Number);
 		const currentSeconds = h * 3600 + m * 60;
 
-		const [sh, sm, ss = 0] = svc.start_time.split(":").map(Number);
-		const [eh, em, es = 0] = svc.end_time.split(":").map(Number);
-		const startSec = sh * 3600 + sm * 60 + ss;
-		const endSec = eh * 3600 + em * 60 + es;
+		const parseTime = (timeString) => {
+			const [hours, minutes, seconds = 0] = timeString.split(":").map(Number);
+			return hours * 3600 + minutes * 60 + seconds;
+		};
 
-		if (currentSeconds < startSec || currentSeconds > endSec) {
-			return false;
-		}
+		const startSeconds = parseTime(service.start_time);
+		const endSeconds = parseTime(service.end_time);
+
+		return currentSeconds >= startSeconds && currentSeconds <= endSeconds;
 	}
-
-	return true;
 }
 
-function locateUser() {
-	if (!navigator.geolocation) {
-		alert("Geolocalizzazione non supportata");
-		return;
+// Popup management
+class PopupManager {
+	static handleMarkerClick(marker, stopId) {
+		const popup = marker.getPopup();
+		if (!popup) return;
+
+		popup.setContent("<i>Loading...</i>");
+
+		setTimeout(() => {
+			const html = PopupManager.generatePopupContent(stopId);
+			popup.setContent(html);
+		}, 10);
 	}
-	navigator.geolocation.getCurrentPosition(
-		(pos) => {
-			const { latitude, longitude } = pos.coords;
-			if (userMarker) {
-				userMarker.setLatLng([latitude, longitude]);
-			} else {
-				userMarker = L.marker([latitude, longitude], { icon: userIcon }).bindPopup("Tu sei qui").addTo(map);
+
+	static generatePopupContent(stopId) {
+		try {
+			const selectedDate = document.getElementById("datePicker").value.replace(/-/g, "");
+			const selectedTime = document.getElementById("timePicker").value;
+
+			const stop = state.gtfsData.stops[stopId];
+			if (!stop) return "<i>Unknown stop</i>";
+
+			const activeTrips = PopupManager.getActiveTripsForStop(stopId, selectedDate, selectedTime);
+
+			if (activeTrips.length === 0) {
+				return `<b>${stop.stop_name}</b><br><i>No active lines today</i>`;
 			}
-			map.setView([latitude, longitude], 15);
-		},
-		(err) => {
-			alert("Errore geolocalizzazione: " + err.message);
+
+			return PopupManager.buildPopupHTML(stop, activeTrips, stopId);
+		} catch (error) {
+			console.error("Error generating popup content for stopId:", stopId, error);
+			return "<i>Error loading content</i>";
 		}
-	);
+	}
+
+	static getActiveTripsForStop(stopId, dateStr, timeStr) {
+		return Object.entries(state.gtfsData.trips).filter(([tripId, trip]) => {
+			return trip?.stops?.includes(stopId) && TripValidator.isTripActive(trip.service_id, dateStr, timeStr);
+		});
+	}
+
+	static buildPopupHTML(stop, activeTrips, stopId) {
+		const routeGroups = new Map();
+		activeTrips.forEach(([tripId, trip]) => {
+			const routeId = trip.route_id;
+			if (!routeGroups.has(routeId)) {
+				routeGroups.set(routeId, []);
+			}
+			routeGroups.get(routeId).push(tripId);
+		});
+
+		let html = `<b>${stop.stop_name}</b><br><form class="popup-form">`;
+		let isFirst = true;
+
+		for (const [routeId] of routeGroups) {
+			const route = state.gtfsData.routes[routeId];
+			const label = route?.short_name || `ID ${routeId}`;
+			const isCurrent = routeId === state.currentVisibleRouteId && stopId === state.currentVisibleStopId;
+			const checked = isCurrent || isFirst;
+
+			html += `<label>
+        <input type="radio" name="routeChoice-${stopId}" value="${routeId}" 
+          ${checked ? "checked" : ""} 
+          onclick="RouteManager.showRoute('${stopId}', '${routeId}')">
+        Line ${label}
+      </label><br>`;
+
+			if (isFirst && !isCurrent) {
+				RouteManager.showRoute(stopId, routeId);
+			}
+			isFirst = false;
+		}
+
+		html += "</form>";
+		return html;
+	}
 }
 
-function resetView() {
-	closeLine();
-	map.setView(INITIAL_CENTER, INITIAL_ZOOM);
-}
+// Route management
+class RouteManager {
+	static showRoute(stopId, routeId) {
+		state.clearShapes();
 
-function clearShapes() {
-	activeShapes.forEach((l) => map.removeLayer(l));
-	activeShapes = [];
-}
+		state.currentVisibleRouteId = routeId;
+		state.currentVisibleStopId = stopId;
+		state.lineMode = true;
 
-function clearLineStops() {
-	lineStopMarkers.forEach((m) => map.removeLayer(m));
-	lineStopMarkers = [];
-}
-
-function clearRouteShapesOnly() {
-	activeShapes.forEach((l) => map.removeLayer(l));
-	activeShapes = [];
-}
-
-
-document.getElementById("btnCloseLine").onclick = closeLine;
-
-function popupContent(stopId) {
-	try {
 		const selectedDate = document.getElementById("datePicker").value.replace(/-/g, "");
 		const selectedTime = document.getElementById("timePicker").value;
 
-		const stop = GTFS_STOPS[stopId];
-		if (!stop) return `<i>Fermata sconosciuta</i>`;
+		const routeTrips = RouteManager.getActiveTripsForRoute(routeId, selectedDate, selectedTime);
+		const tripsByDirection = RouteManager.groupTripsByDirection(routeTrips);
 
-		const activeTrips = Object.entries(GTFS_TRIPS).filter(([tid, trip]) => {
-			return trip?.stops?.includes(stopId) && isTripActive(trip.service_id, selectedDate, selectedTime);
+		const allStops = new Set();
+		const stopDirections = new Map();
+
+		Object.entries(tripsByDirection).forEach(([direction, trip]) => {
+			RouteManager.drawRouteShape(trip, direction, allStops);
+
+			trip.stops?.forEach((stopId) => {
+				if (!stopDirections.has(stopId)) {
+					stopDirections.set(stopId, new Set());
+				}
+				stopDirections.get(stopId).add(direction);
+			});
 		});
 
-		if (activeTrips.length === 0) {
-			return `<b>${stop.stop_name}</b><br><i>Nessuna linea attiva oggi</i>`;
-		}
+		RouteManager.updateVisibleStops(allStops, stopDirections);
+		UIManager.showCloseButton();
+	}
 
-		// Raggruppa i trip per route_id
-		const routesForStop = {};
-		for (const [tid, trip] of activeTrips) {
-			const rid = trip.route_id;
-			if (!routesForStop[rid]) routesForStop[rid] = [];
-			routesForStop[rid].push(tid);
-		}
+	static getActiveTripsForRoute(routeId, dateStr, timeStr) {
+		return Object.entries(state.gtfsData.trips).filter(([tripId, trip]) => trip.route_id === routeId && TripValidator.isTripActive(trip.service_id, dateStr, timeStr));
+	}
 
-		let html = `<b>${stop.stop_name}</b><br><form class="popup-form">`;
-
-		let first = true;
-		for (const [routeId, tripIds] of Object.entries(routesForStop)) {
-			const route = GTFS_ROUTES[routeId];
-			const label = route?.short_name || `ID ${routeId}`;
-			const isCurrent = routeId === currentVisibleRouteId && stopId === currentVisibleStopId;
-			const checked = isCurrent || first;
-
-			html += `<label>
-    <input type="radio" name="routeChoice-${stopId}" value="${routeId}" 
-      ${checked ? "checked" : ""} 
-      onclick="showRoute('${stopId}', '${routeId}')">
-    Linea ${label}
-  </label><br>`;
-
-			if (first && !isCurrent) {
-				showRoute(stopId, routeId);
+	static groupTripsByDirection(trips) {
+		const groups = {};
+		trips.forEach(([tripId, trip]) => {
+			const direction = trip.direction_id || "0";
+			if (!groups[direction]) {
+				groups[direction] = trip;
 			}
-			first = false;
+		});
+		return groups;
+	}
+
+	static drawRouteShape(trip, direction, allStops) {
+		const coordinates = state.gtfsData.shapes[trip.shape_id];
+		if (!coordinates) return;
+
+		const color = direction === "0" ? CONFIG.ROUTE_COLORS.direction0 : CONFIG.ROUTE_COLORS.direction1;
+
+		const polyline = L.polyline(coordinates, {
+			color,
+			weight: 4,
+			opacity: 0.85,
+			offset: 6,
+		}).addTo(map);
+
+		state.activeShapes.push(polyline);
+		trip.stops?.forEach((stopId) => allStops.add(stopId));
+	}
+
+	static updateVisibleStops(lineStops, stopDirections) {
+		if (clusters.disableClustering) {
+			clusters.disableClustering();
 		}
 
-		html += `</form>`;
-		return html;
-	} catch (e) {
-		console.error("Errore in popupContent per stopId:", stopId, e);
-		return `<i>Errore nel caricamento</i>`;
+		state.stopMarkers.forEach((marker, stopId) => {
+			const isInLine = lineStops.has(stopId);
+			const hasLayer = clusters.hasLayer(marker);
+
+			if (isInLine) {
+				if (!hasLayer) clusters.addLayer(marker);
+				marker.setOpacity(1);
+				RouteManager.updateMarkerColor(marker, stopId, stopDirections);
+			} else {
+				if (hasLayer) clusters.removeLayer(marker);
+			}
+		});
+	}
+
+	static updateMarkerColor(marker, stopId, stopDirections) {
+		const directions = stopDirections.get(stopId);
+		if (!directions) return;
+
+		let color;
+		if (directions.has("0") && directions.has("1")) {
+			color = CONFIG.STOP_COLORS.both;
+		} else if (directions.has("0")) {
+			color = CONFIG.STOP_COLORS.direction0;
+		} else if (directions.has("1")) {
+			color = CONFIG.STOP_COLORS.direction1;
+		} else {
+			color = CONFIG.STOP_COLORS.default;
+		}
+
+		const newIcon = IconFactory.createStopIcon(color);
+		marker.setIcon(newIcon);
+	}
+
+	static closeLine() {
+		clusters.enableClustering();
+		state.clearShapes();
+
+		clusters.clearLayers();
+		state.stopMarkers.forEach((marker) => {
+			marker.setIcon(IconFactory.createStopIcon());
+			clusters.addLayer(marker);
+		});
+
+		state.reset();
+		UIManager.hideCloseButton();
 	}
 }
 
-function showRoute(stopId, routeId) {
-  // NON tocchiamo il popup in corso.
-  // Puliamo solo le polylines (non i marker della linea)
-  clearRouteShapesOnly();
+// Geolocation
+class LocationManager {
+	static locateUser() {
+		if (!navigator.geolocation) {
+			alert("Geolocation not supported");
+			return;
+		}
 
-  currentVisibleRouteId = routeId;
-  currentVisibleStopId = stopId;
-  lineMode = true;
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				const { latitude, longitude } = position.coords;
+				LocationManager.updateUserLocation(latitude, longitude);
+			},
+			(error) => {
+				alert(`Geolocation error: ${error.message}`);
+			}
+		);
+	}
 
-  const selectedDate = document.getElementById("datePicker").value.replace(/-/g, "");
-  const selectedTime = document.getElementById("timePicker").value;
-
-  // Tutti i trips attivi per la route
-  const tripsForRoute = Object.entries(GTFS_TRIPS).filter(([tid, trip]) =>
-    trip.route_id === routeId && isTripActive(trip.service_id, selectedDate, selectedTime)
-  );
-
-  // Prendi una variante per direzione
-  const tripsByDir = {};
-  for (const [tid, trip] of tripsForRoute) {
-    const dir = trip.direction_id || "0";
-    if (!tripsByDir[dir]) tripsByDir[dir] = trip;
-  }
-
-  // Set di fermate coinvolte (unione delle due direzioni)
-  const stopsSet = new Set();
-  for (const dir in tripsByDir) {
-    const trip = tripsByDir[dir];
-    if (!trip) continue;
-
-    const coords = GTFS_SHAPES[trip.shape_id];
-    if (!coords) continue;
-
-    const polyline = L.polyline(coords, {
-      color: dir === "0" ? "#c84949ff" : "#2b70cbff",
-      weight: 4,
-      opacity: 0.85,
-      offset: 6,
-    }).addTo(map);
-    activeShapes.push(polyline);
-
-    trip.stops.forEach((sid) => stopsSet.add(sid));
-  }
-
-  // 1) Disabilita il clustering (così i marker di linea non si ri-aggregano)
-  if (clusters.disableClustering) clusters.disableClustering();
-
-  // 2) Mantieni SOLO i marker delle fermate della linea dentro clusters
-  //    - i marker della linea: li lasciamo dov'erano (se per caso non ci sono, li riaggiungiamo)
-  //    - tutti gli altri: li rimuoviamo dal layer clusters (ma NON distruggiamo l'istanza)
-  //       (così non "tocchiamo" quelli di linea e non chiudiamo il popup corrente)
-  for (const [sid, marker] of Object.entries(STOP_MARKERS)) {
-    const inLine = stopsSet.has(sid);
-    const has = clusters.hasLayer(marker);
-
-    if (inLine) {
-      if (!has) clusters.addLayer(marker); // se non c'è, lo aggiungiamo (non stiamo rimuovendo/riaggiungendo quelli di linea)
-      marker.setOpacity(1);
-    } else {
-      if (has) clusters.removeLayer(marker); // rimuovi tutti i NON-linea
-    }
-  }
-
-  showCloseButton();
+	static updateUserLocation(lat, lng) {
+		if (state.userMarker) {
+			state.userMarker.setLatLng([lat, lng]);
+		} else {
+			state.userMarker = L.marker([lat, lng], {
+				icon: IconFactory.createUserIcon(),
+			})
+				.bindPopup("You are here")
+				.addTo(map);
+		}
+		map.setView([lat, lng], 15);
+	}
 }
 
-function closeLine() {
-	clusters.enableClustering();
-  clearShapes();
-  clearLineStops();
+// UI Management
+class UIManager {
+	static showCloseButton() {
+		document.getElementById("btnCloseLine").style.display = "block";
+	}
 
-  clusters.clearLayers();
-  for (const marker of Object.values(STOP_MARKERS)) {
-    clusters.addLayer(marker);
-  }
+	static hideCloseButton() {
+		document.getElementById("btnCloseLine").style.display = "none";
+	}
 
-  currentVisibleRouteId = null;
-  currentVisibleStopId  = null;
-  lineMode = false;
-  hideCloseButton();
+	static resetView() {
+		RouteManager.closeLine();
+		map.setView(CONFIG.INITIAL_CENTER, CONFIG.INITIAL_ZOOM);
+	}
+
+	static initializeEventListeners() {
+		document.getElementById("btnReset").onclick = UIManager.resetView;
+		document.getElementById("btnLocate").onclick = LocationManager.locateUser;
+		document.getElementById("btnCloseLine").onclick = RouteManager.closeLine;
+	}
 }
 
-// --- Eventi UI ---
-function showCloseButton() {
-	document.getElementById("btnCloseLine").style.display = "block";
-}
-function hideCloseButton() {
-	document.getElementById("btnCloseLine").style.display = "none";
-}
-document.getElementById("btnReset").onclick = resetView;
-document.getElementById("btnLocate").onclick = locateUser;
+// Make RouteManager globally accessible for onclick handlers
+window.RouteManager = RouteManager;
 
-// --- Inizializzazione ---
-loadData();
+// Add date/time change listeners to refresh stop availability
+// function refreshStopAvailability() {
+// 	const selectedDate = document.getElementById("datePicker").value.replace(/-/g, "");
+// 	const selectedTime = document.getElementById("timePicker").value;
+
+// 	// Update all stop markers based on new date/time
+// 	state.stopMarkers.forEach((marker, stopId) => {
+// 		const hasActiveServices = DataLoader.hasActiveServices(stopId, selectedDate, selectedTime);
+// 		marker._hasActiveServices = hasActiveServices;
+
+// 		// Only update if not in line mode (line mode handles its own coloring)
+// 		if (!state.lineMode) {
+// 			const icon = hasActiveServices ? IconFactory.createStopIcon(CONFIG.STOP_COLORS.default, true) : IconFactory.createStopIcon(CONFIG.STOP_COLORS.unavailable, false);
+
+// 			marker.setIcon(icon);
+// 		}
+// 	});
+// }
+
+// Initialize application
+document.addEventListener("DOMContentLoaded", () => {
+	UIManager.initializeEventListeners();
+	DataLoader.loadAllData().then(() => {
+		// Add listeners for date/time changes
+		// document.getElementById("datePicker").addEventListener("change", refreshStopAvailability);
+		// document.getElementById("timePicker").addEventListener("change", refreshStopAvailability);
+
+		console.log("Transit map loaded successfully");
+	});
+});
