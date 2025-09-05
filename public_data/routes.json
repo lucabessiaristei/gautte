@@ -1,3 +1,1542 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ae402313443042131de60465fbfc586c676a49eb91a86aa0bacc1a28bec67306
-size 39623
+{
+  "METROU": {
+    "short_name": "M1", 
+    "long_name": "metropolitana, stazione Fermi (Collegno) - stazione Bengasi",
+    "agency_id": "U",
+    "color": "FF0000",
+    "text_color": "FFFFFF"
+  },
+  "4U": {
+    "short_name": "4",
+    "long_name": "via delle Querce - strada del Drosso",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "3U": {
+    "short_name": "3",
+    "long_name": "piazzale Vallette - corso Tortona",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "6U": {
+    "short_name": "6",
+    "long_name": "piazza Hermada - piazza Carlo Felice",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "7U": {
+    "short_name": "7",
+    "long_name": "linea storica, piazza Castello - Porta Nuova",
+    "agency_id": "T",
+    "color": "33CC00",
+    "text_color": "000000"
+  },
+  "9U": {
+    "short_name": "9",
+    "long_name": "piazza Stampalia - corso D'Azeglio",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "10U": {
+    "short_name": "10",
+    "long_name": "c. Settembrini (feriale)/p.le Caio Mario (festivo) - p. Statuto",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "15U": {
+    "short_name": "15",
+    "long_name": "via Brissogne - piazza Coriolano",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "16CDU": {
+    "short_name": "16 CD",
+    "long_name": "circolare destra, piazza Sabotino - piazza della Repubblica - piazza Sabotino",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "16CSU": {
+    "short_name": "16 CS",
+    "long_name": "circolare sinistra, piazza Sabotino - piazza della Repubblica - piazza Sabotino",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "79U": {
+    "short_name": "79",
+    "long_name": "cremagliera, piazza Modena - basilica di Superga",
+    "agency_id": "T",
+    "color": "33CC00",
+    "text_color": "000000"
+  },
+  "13U": {
+    "short_name": "13",
+    "long_name": "Piazza Campanella - Piazza Gran Madre",
+    "agency_id": "U",
+    "color": "CC9900",
+    "text_color": "0000FF"
+  },
+  "102U": {
+    "short_name": "102",
+    "long_name": "navetta interna Cimitero Parco",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1068E": {
+    "short_name": "1068",
+    "long_name": "Collegno - Condove",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1085E": {
+    "short_name": "1085",
+    "long_name": "Torino - Fiat Rivalta",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1086E": {
+    "short_name": "1086",
+    "long_name": "Rivoli - Trana - Giaveno",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1087E": {
+    "short_name": "1087",
+    "long_name": "Rivoli - Avigliana - Ferriera",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1091E": {
+    "short_name": "1091",
+    "long_name": "Collegno - Rubiana",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1099E": {
+    "short_name": "1099",
+    "long_name": "Servizio Atipico Chiusa San Michele - Condove",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "10NU": {
+    "short_name": "10N",
+    "long_name": "via Massari - piazza XVIII Dicembre",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "11U": {
+    "short_name": "11",
+    "long_name": "via Leopardi (Venaria Reale) - corso Stati Uniti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1128E": {
+    "short_name": "1128",
+    "long_name": "Borgata Adrit - San Giorio - Bussoleno",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "12U": {
+    "short_name": "12",
+    "long_name": "via Allason - corso Vittorio Emanuele II",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1224E": {
+    "short_name": "1224",
+    "long_name": "Bussoleno - Avigliana - Rivoli",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "132U": {
+    "short_name": "132",
+    "long_name": "piazza Robotti (Alpignano) - via De Amicis (Fermi M1 - Collegno)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "14U": {
+    "short_name": "14",
+    "long_name": "via Amendola (Nichelino) - piazza Solferino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1432E": {
+    "short_name": "1432",
+    "long_name": "None - Alpignano (Linea di Gronda)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1435E": {
+    "short_name": "1435",
+    "long_name": "Torino - C.A.A.T. - SITO",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1442E": {
+    "short_name": "1442",
+    "long_name": "Nichelino - Torino - Ferriera (Stab. Teksid)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1510E": {
+    "short_name": "1510",
+    "long_name": "Torino - Orbassano - Cumiana / Cumiana - Pinerolo",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "1511E": {
+    "short_name": "1511",
+    "long_name": "Torino - Orbassano - Giaveno / Giaveno - Piossasco",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "159U": {
+    "short_name": "159",
+    "long_name": "piazza Stampalia - via Piave (Pianezza)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "15NU": {
+    "short_name": "15N",
+    "long_name": "via Brissogne - piazza Sabotino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "17U": {
+    "short_name": "17",
+    "long_name": "Ospedale di Rivoli - via Ventimiglia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "17BU": {
+    "short_name": "17 /",
+    "long_name": "feriale, via Crea (Grugliasco) - via Ventimiglia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "18U": {
+    "short_name": "18",
+    "long_name": "piazza Sofia - piazzale Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "19U": {
+    "short_name": "19",
+    "long_name": "corso Cadore - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "19NU": {
+    "short_name": "19N",
+    "long_name": "largo Donatori di Sangue - Cimitero Monumentale",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1CU": {
+    "short_name": "1C",
+    "long_name": "via Fratelli Cervi (Chieri) - via Rocchette (Chieri)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1NU": {
+    "short_name": "1N",
+    "long_name": "martedì-sabato, piazza Parco della Rimembranza (Nichelino) - via XXV Aprile (Nichelino)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "1SU": {
+    "short_name": "1S",
+    "long_name": "via Lombardia (Settimo) - via Enaudi (Settimo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "2U": {
+    "short_name": "2",
+    "long_name": "via Ponchielli - via Corradino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "20U": {
+    "short_name": "20",
+    "long_name": "via Paganini (Settimo T.se) - Park Stura (feriale)/p.Mochino (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "2009E": {
+    "short_name": "2009",
+    "long_name": "Autolinea delle Langhe (Dir. Grinzane - Sinio)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2014E": {
+    "short_name": "2014",
+    "long_name": "Torino - Poirino - Alba",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2016E": {
+    "short_name": "2016",
+    "long_name": "Canale - Sommariva - Racconigi",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2027E": {
+    "short_name": "2027",
+    "long_name": "Canale - S.Damiano - Asti",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2073E": {
+    "short_name": "2073",
+    "long_name": "Linea operaia - Borgo Aje - Cambiano - Santena - Villastellone - Carmagnola",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2172E": {
+    "short_name": "2172",
+    "long_name": "Autolinea delle Langhe (Dir. Monforte - Dogliani)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "2183E": {
+    "short_name": "2183",
+    "long_name": "Canale - Fossano",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "22U": {
+    "short_name": "22",
+    "long_name": "speciale stabilimenti, corso Sebastopoli - strada Cascinette",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "2354E": {
+    "short_name": "2354",
+    "long_name": "Carignano - Santena - Cambiano",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "24U": {
+    "short_name": "24",
+    "long_name": "speciale stabilimenti, via Vigliani - strada Cascinette",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "25U": {
+    "short_name": "25",
+    "long_name": "speciale stabilimenti, via Lombardia (Settimo Torinese) - lungo Stura Lazio",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "26U": {
+    "short_name": "26",
+    "long_name": "corso Vercelli (Park Stura) - Borgata di Villaretto - via Italia (Borgaro)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "27U": {
+    "short_name": "27",
+    "long_name": "via Anglesio - via XX Settembre",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "29U": {
+    "short_name": "29",
+    "long_name": "piazzale Vallette - piazza Solferino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "2CU": {
+    "short_name": "2C",
+    "long_name": "feriale, piazza Rossi (Pessione) - via Vittorio Emanuele II (Chieri)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "30U": {
+    "short_name": "30",
+    "long_name": "via Gozzano (Chieri) - corso San Maurizio",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "3006E": {
+    "short_name": "3006",
+    "long_name": "Torino - Settimo - Vallecerrina - Casale",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3023E": {
+    "short_name": "3023",
+    "long_name": "Vallecerrina - Asti",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3092E": {
+    "short_name": "3092",
+    "long_name": "Torino - Forno / San Maurizio - Forno",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3096E": {
+    "short_name": "3096",
+    "long_name": "Gassino - Sciolze",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3105E": {
+    "short_name": "3105",
+    "long_name": "Chivasso - Asti",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3106E": {
+    "short_name": "3106",
+    "long_name": "Crescentino - Chivasso - Torino FCA",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3107E": {
+    "short_name": "3107",
+    "long_name": "Torino - Settimo - Gassino - Chivasso - Piova' Massaia",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3121E": {
+    "short_name": "3121",
+    "long_name": "Castagneto Po - Chivasso",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3131E": {
+    "short_name": "3131",
+    "long_name": "Torino - Lombardore - Rivarolo",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3132E": {
+    "short_name": "3132",
+    "long_name": "Rivarolo - Castellamonte",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3133E": {
+    "short_name": "3133",
+    "long_name": "Torino - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3165E": {
+    "short_name": "3165",
+    "long_name": "Torino - Germagnano",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3166E": {
+    "short_name": "3166",
+    "long_name": "Torino - Volpiano - San Benigno",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "32U": {
+    "short_name": "32",
+    "long_name": "piazza Robotti (Alpignano) - corso Tassoni",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "33U": {
+    "short_name": "33",
+    "long_name": "c. Papa Giovanni XXIII (Collegno) - c. Vittorio Emanuele II (feriale)/p.le Adua (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "3316E": {
+    "short_name": "3316",
+    "long_name": "Chivasso F.S. - Rondissone",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3321E": {
+    "short_name": "3321",
+    "long_name": "Montalenghe - Foglizzo - Chivasso",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3329E": {
+    "short_name": "3329",
+    "long_name": "Cirie' - Torino (Fiat Mirafiori)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3331E": {
+    "short_name": "3331",
+    "long_name": "Verrua Savoia - Crescentino - Brusasco",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3382E": {
+    "short_name": "3382",
+    "long_name": "Torino (C.so Marche) - Caselle ALENIA",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "34U": {
+    "short_name": "34",
+    "long_name": "feriale, via Bertani / strada Torino (Beinasco) - via Ventimiglia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "3428E": {
+    "short_name": "3428",
+    "long_name": "Servizio Scuolabus Comune di Rivarossa",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3429E": {
+    "short_name": "3429",
+    "long_name": "Servizio Scuolabus San Benigno - Volpiano - Chivasso",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "35U": {
+    "short_name": "35",
+    "long_name": "via Amendola (Nichelino) - via Artom",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "3502E": {
+    "short_name": "3502",
+    "long_name": "Servizio Scuolabus San Maurizio - Castellamonte",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3545E": {
+    "short_name": "3545",
+    "long_name": "Linea operaia Carignano - Torino - Chivasso (P.I.Chi)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "35NU": {
+    "short_name": "35N",
+    "long_name": "via Verdi (Candiolo) - Vill. Dega (Vinovo) - via Trento (Nichelino)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "36U": {
+    "short_name": "36",
+    "long_name": "piazza Martiri della Libertà (Rivoli) - piazza Massaua",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "36NU": {
+    "short_name": "36N",
+    "long_name": "Castello di Rivoli - Ospedale di Rivoli / Stazione Alpignano - Rivoli / Bruere - Tetti Neirotti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "38U": {
+    "short_name": "38",
+    "long_name": "p.le Caio Mario (feriale)/corso Maroncelli (festivo) - via Minghetti (Collegno)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "38SU": {
+    "short_name": "38S",
+    "long_name": "scolastico, via De Amicis (Fermi M1, Collegno) - via Crea (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "39U": {
+    "short_name": "39",
+    "long_name": "piazza Baden Baden (Moncalieri) - p.le Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "3950E": {
+    "short_name": "3950",
+    "long_name": "Servizio Scuolabus Comune di Verolengo",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3971E": {
+    "short_name": "3971",
+    "long_name": "TORINO FOSSATA REBAUDENGO FS - CERES",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "3990U": {
+    "short_name": "3990",
+    "long_name": "Venaria Express (Sabato e Festivi), Torino - Reggia di Venaria",
+    "agency_id": "T",
+    "color": "33CC00",
+    "text_color": "000000"
+  },
+  "40U": {
+    "short_name": "40",
+    "long_name": "feriale, p.le Caio Mario - piazza Massaua",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "41U": {
+    "short_name": "41",
+    "long_name": "stazione Lingotto - Stupinigi - via Orbassano (Borgaretto)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "4108E": {
+    "short_name": "4108",
+    "long_name": "Ivrea - Vische - Chivasso",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4147E": {
+    "short_name": "4147",
+    "long_name": "Vialfre' - Castellamonte (Mercatale)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4151E": {
+    "short_name": "4151",
+    "long_name": "Cossano - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4152E": {
+    "short_name": "4152",
+    "long_name": "Silva - Vialfre' - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4153E": {
+    "short_name": "4153",
+    "long_name": "Ivrea Linea 5 (Quassolo - Bienca)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4154E": {
+    "short_name": "4154",
+    "long_name": "Ivrea Linee 1 (Bollengo - Bellavista) - 1sb (San Bernardo - Albiano)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4155E": {
+    "short_name": "4155",
+    "long_name": "Ivrea Linee 2 (Chiaverano - Samone) - 2sb (Burolo - Samone)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4156E": {
+    "short_name": "4156",
+    "long_name": "Andrate - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4157E": {
+    "short_name": "4157",
+    "long_name": "Ivrea Linea 3 (San Germano - Pavone)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4168E": {
+    "short_name": "4168",
+    "long_name": "Ivrea Linea 4 (San Giovanni - Bellavista)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "42U": {
+    "short_name": "42",
+    "long_name": "via Marsigli - via Ventimiglia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "43U": {
+    "short_name": "43",
+    "long_name": "via Gorizia (Rivalta) - via Goito (Moncalieri)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "44U": {
+    "short_name": "44",
+    "long_name": "viale Partigiani (Collegno) - via Don Borio (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "44SU": {
+    "short_name": "44S",
+    "long_name": "scolastico, via Portalupi (Collegno) - via Crea (Grugliasco) - piazza Omero",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "45U": {
+    "short_name": "45",
+    "long_name": "piazza Carducci (Santena) - corso Bramante (feriale)/corso Maroncelli (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "4512E": {
+    "short_name": "4512",
+    "long_name": "Ivrea - Castellamonte - Valchiusella",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4513E": {
+    "short_name": "4513",
+    "long_name": "Ivrea - Traversella",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4541E": {
+    "short_name": "4541",
+    "long_name": "Ivrea Linee 6 (v. Saudino - Bioparco) - 6sb (v. Saudino - Loranze')",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "4546E": {
+    "short_name": "4546",
+    "long_name": "Albiano - Vestigne' (Scuolabus)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "45BU": {
+    "short_name": "45 /",
+    "long_name": "feriale, piazza Cosma e Damiano (Santena) - corso Bramante",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "46U": {
+    "short_name": "46",
+    "long_name": "via Lombardore (Leini) - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "47U": {
+    "short_name": "47",
+    "long_name": "piazza Freguglia (Cavoretto) - corso Bramante",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "48U": {
+    "short_name": "48",
+    "long_name": "Ospedale San Luigi (Orbassano) - via Orbassano (Borgaretto)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "49U": {
+    "short_name": "49",
+    "long_name": "via Lombardia (Settimo Torinese) - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "4NU": {
+    "short_name": "4N",
+    "long_name": "v.degli Ulivi - p.za Donatore",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "5U": {
+    "short_name": "5",
+    "long_name": "piazza Dalla Chiesa (Orbassano) - piazza Arbarello",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "50U": {
+    "short_name": "50",
+    "long_name": "via delle Querce - largo Donatori di Sangue (feriale)/corso XI Febbraio (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "5095E": {
+    "short_name": "5095",
+    "long_name": "Forno - Rivarolo",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "51U": {
+    "short_name": "51",
+    "long_name": "feriale, corso Vercelli (Park Stura) - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "5134E": {
+    "short_name": "5134",
+    "long_name": "Forno - Busano - Cuorgne'",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5135E": {
+    "short_name": "5135",
+    "long_name": "Rivarolo - San Benigno - Torino",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5137E": {
+    "short_name": "5137",
+    "long_name": "Rivarolo - Pont - Ceresole",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5140E": {
+    "short_name": "5140",
+    "long_name": "Pont - Valprato Soana",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5141E": {
+    "short_name": "5141",
+    "long_name": "Pont - Frassinetto",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5143E": {
+    "short_name": "5143",
+    "long_name": "Cuorgne' - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5145E": {
+    "short_name": "5145",
+    "long_name": "Rivarolo - Ivrea",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5150E": {
+    "short_name": "5150",
+    "long_name": "Castelnuovo Nigra - Cuorgne' Centro",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "52U": {
+    "short_name": "52",
+    "long_name": "feriale, via Scialoja - piazzale Adua",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "53U": {
+    "short_name": "53",
+    "long_name": "feriale, ospedale San Vincenzo - corso San Maurizio",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "5318E": {
+    "short_name": "5318",
+    "long_name": "Castelnuovo Nigra - Castellamonte - Scarmagno",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5319E": {
+    "short_name": "5319",
+    "long_name": "Campo - Muraglio - Rivarolo - Bosconero (EATON LIVIA)",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5322E": {
+    "short_name": "5322",
+    "long_name": "Cuorgne' - Alpette",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "5379E": {
+    "short_name": "5379",
+    "long_name": "Servizio Scuolabus Cirie' - Rivarolo",
+    "agency_id": "E",
+    "color": "0080FF",
+    "text_color": "FFFFFF"
+  },
+  "54U": {
+    "short_name": "54",
+    "long_name": "corso Gabetti (feriale)/Mongreno (festivo) - str. del Mainero (feriale)/p.le Adua (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "55U": {
+    "short_name": "55",
+    "long_name": "via Moncalieri (Grugliasco) - corso Farini",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "56U": {
+    "short_name": "56",
+    "long_name": "corso Tirreno (Grugliasco) - largo Tabacchi",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "58U": {
+    "short_name": "58",
+    "long_name": "feriale, via Allason - via Bertola",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "58BU": {
+    "short_name": "58 /",
+    "long_name": "via Grosso - via Bertola",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "59U": {
+    "short_name": "59",
+    "long_name": "piazza Oropa (Druento) - piazza Solferino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "59BU": {
+    "short_name": "59 /",
+    "long_name": "piazzale Vallette - piazza Solferino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "5BU": {
+    "short_name": "5 /",
+    "long_name": "lunedì-venerdì, via Bertani (cimitero Parco) - piazza Arbarello",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "60U": {
+    "short_name": "60",
+    "long_name": "via Paris - corso Inghilterra",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "61U": {
+    "short_name": "61",
+    "long_name": "via Mezzaluna (San Mauro) - corso Vittorio Emanuele II",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "62U": {
+    "short_name": "62",
+    "long_name": "piazza Sofia - p.le Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "63U": {
+    "short_name": "63",
+    "long_name": "via Negarville - piazza Solferino",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "63BU": {
+    "short_name": "63 /",
+    "long_name": "p.le Caio Mario - stazione Lingotto",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "64U": {
+    "short_name": "64",
+    "long_name": "via Napoli (Grugliasco) - corso Vittorio Emanuele II",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "65U": {
+    "short_name": "65",
+    "long_name": "via Servais - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "66U": {
+    "short_name": "66",
+    "long_name": "feriale, via Crea (Grugliasco) - corso Farini",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "67U": {
+    "short_name": "67",
+    "long_name": "piazza Marconi (Moncalieri) - piazza Arbarello (feriale)/via Scialoja (festivo)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "68U": {
+    "short_name": "68",
+    "long_name": "via Cafasso - via Frejus",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "69U": {
+    "short_name": "69",
+    "long_name": "via Italia (Borgaro) - via Fossata",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "70U": {
+    "short_name": "70",
+    "long_name": "piazza Failla (Moncalieri) - corso San Maurizio",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "71U": {
+    "short_name": "71",
+    "long_name": "via Farinelli - via Servais",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "72U": {
+    "short_name": "72",
+    "long_name": "corso Machiavelli (Venaria Reale) - via Bertola",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "72BU": {
+    "short_name": "72 /",
+    "long_name": "feriale, corso Machiavelli (Venaria Reale) - via Bertola",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "73U": {
+    "short_name": "73",
+    "long_name": "via Bonsignore - piazza Zara",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "74U": {
+    "short_name": "74",
+    "long_name": "via Gorini - via Ventimiglia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "75U": {
+    "short_name": "75",
+    "long_name": "piazzale Vallette - largo Tabacchi",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "76U": {
+    "short_name": "76",
+    "long_name": "via Olevano (Grugliasco) - viale Partigiani (Collegno)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "77U": {
+    "short_name": "77",
+    "long_name": "feriale, via Sandre (Venaria Reale) - corso Cadore",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "78U": {
+    "short_name": "78",
+    "long_name": "feriale, largo Casale - strada Alta di Mongreno",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "79BU": {
+    "short_name": "79 /",
+    "long_name": "feriale, piazza Modena - Superga - via Cordova (Baldissero T.se)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "8U": {
+    "short_name": "8",
+    "long_name": "via Mezzaluna (San Mauro) - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "80U": {
+    "short_name": "80",
+    "long_name": "feriale, piazza Caduti per la Libertà (Moncalieri) - strada Moncalvo",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "81U": {
+    "short_name": "81",
+    "long_name": "feriale, via delle Primule (Moncalieri) - corso Maroncelli",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "82U": {
+    "short_name": "82",
+    "long_name": "piazza Caduti per la Libertà (Moncalieri) - strada Carpice (Moncalieri)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "83U": {
+    "short_name": "83",
+    "long_name": "via Goito - Movicentro (Trofarello) - str. Bauducchi (Moncalieri) - Villastellone",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "84U": {
+    "short_name": "84",
+    "long_name": "feriale, via Corradino - strada Carpice (Moncalieri)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "86BU": {
+    "short_name": "86 /",
+    "long_name": "scolastico, via Di Vittorio (Venaria) - Via Claviere (Pianezza)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "88U": {
+    "short_name": "88",
+    "long_name": "scolastico, piazza Cattaneo - via Crea (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "89U": {
+    "short_name": "89",
+    "long_name": "scolastico, via Moriondo (Rivalta) - via Crea (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "89BU": {
+    "short_name": "89 /",
+    "long_name": "scolastico, via Portalupi (Collegno) - via Crea (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "90U": {
+    "short_name": "90",
+    "long_name": "speciale stabilimenti, via delle Querce - via Biscaretti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "91U": {
+    "short_name": "91",
+    "long_name": "speciale stabilimenti, via della Cella - piazzale Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "92U": {
+    "short_name": "92",
+    "long_name": "speciale stabilimenti, largo Donatori di Sangue - piazzale Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "93BU": {
+    "short_name": "93 /",
+    "long_name": "speciale stabilimenti, piazza Mochino (San Mauro) - corso Tazzoli",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "94U": {
+    "short_name": "94",
+    "long_name": "speciale stabilimenti, piazza Statuto - via Biscaretti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "95U": {
+    "short_name": "95",
+    "long_name": "speciale stabilimenti, stazione Lingotto - corso Tazzoli - via Rivalta (Grugliasco)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "95BU": {
+    "short_name": "95 /",
+    "long_name": "speciale stabilimenti, stazione Lingotto - via Anselmetti - via Biscaretti - via Faccioli",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "96U": {
+    "short_name": "96",
+    "long_name": "speciale stabilimenti, via Amendola (Nichelino) - corso Tazzoli",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "97U": {
+    "short_name": "97",
+    "long_name": "speciale stabilimenti, piazza Martiri della Libertà (Rivoli) - via Biscaretti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "98U": {
+    "short_name": "98",
+    "long_name": "speciale stabilimenti, via Portalupi (Collegno) - via Biscaretti",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "99U": {
+    "short_name": "99",
+    "long_name": "speciale stabilimenti, piazza Carducci (Santena) - via Plava",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "CP1U": {
+    "short_name": "CP1",
+    "long_name": "via De Amicis (Fermi M1 - Collegno) - via Musinè (Pianezza)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "E68U": {
+    "short_name": "E68",
+    "long_name": "notturna, piazza Vittorio Veneto - via Cafasso",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "E68BU": {
+    "short_name": "E68B",
+    "long_name": "notturna, piazza Vittorio Veneto - Chieri",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "LS1U": {
+    "short_name": "LS1",
+    "long_name": "Leini - Settimo Torinese",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "M1SU": {
+    "short_name": "M1S",
+    "long_name": "bus sostitutivo metropolitana, stazione Fermi (Collegno) - stazione Bengasi",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "MEORU": {
+    "short_name": "MEOR",
+    "long_name": "Linea mercato Orbassano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "N04U": {
+    "short_name": "N04",
+    "long_name": "notturna, piazza Vittorio Veneto - via delle Querce",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "N04BU": {
+    "short_name": "N04B",
+    "long_name": "notturna, via delle Querce - piazza Vittorio Veneto",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "N08U": {
+    "short_name": "N08",
+    "long_name": "notturna, piazza Vittorio Veneto - Piazza Sofia",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "N10U": {
+    "short_name": "N10",
+    "long_name": "notturna, piazza Vittorio Veneto - via Massari",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "OB1U": {
+    "short_name": "OB1",
+    "long_name": "feriale, Ospedale San Luigi (Orbassano) - Via Volturno (Orbassano)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "RV2U": {
+    "short_name": "RV2",
+    "long_name": "feriale, Via Vicuna (Rivalta) - via Griva (Rivalta)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S04U": {
+    "short_name": "S04",
+    "long_name": "notturna, piazza Vittorio Veneto - p.le Caio Mario",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S05U": {
+    "short_name": "S05",
+    "long_name": "notturna, piazza Vittorio Veneto - piazza Cattaneo",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S05BU": {
+    "short_name": "S05B",
+    "long_name": "notturna, piazza Vittorio Veneto - Rivalta",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S18U": {
+    "short_name": "18 BLU",
+    "long_name": "notturna, piazza Vittorio Veneto - via Artom",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S18BU": {
+    "short_name": "S18B",
+    "long_name": "notturna, piazza Vittorio Veneto - Vinovo",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S45U": {
+    "short_name": "S45",
+    "long_name": "notturna, piazza Vittorio Veneto - Chieri",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "S45BU": {
+    "short_name": "S45B",
+    "long_name": "notturna, piazza Vittorio Veneto - Santena",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "SE1U": {
+    "short_name": "SE1",
+    "long_name": "corso Vercelli (Park Stura) - via Lombardia (Settimo Torinese)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "SE2U": {
+    "short_name": "SE2",
+    "long_name": "feriale, corso Vercelli (Park Stura) - via Lombardia (Settimo Torinese)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "ST1U": {
+    "short_name": "STAR 1",
+    "long_name": "via Bixio - corso Farini",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "ST2U": {
+    "short_name": "STAR 2",
+    "long_name": "corso D'Azeglio - corso Bolzano",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "VE1U": {
+    "short_name": "VE1",
+    "long_name": "viale Giordano Bruno (Venaria Reale) - via Monte Ortigara",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "VE2U": {
+    "short_name": "VE2",
+    "long_name": "Ospedale nuovo (Venaria Reale) - via Iseppon (Venaria Reale)",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "VEXU": {
+    "short_name": "VEX",
+    "long_name": "Venaria Express (Lunedì - Venerdì), Torino - Reggia di Venaria",
+    "agency_id": "T",
+    "color": "33CC00",
+    "text_color": "000000"
+  },
+  "W01U": {
+    "short_name": "W01",
+    "long_name": "notturna, piazza Vittorio Veneto - piazza Massaua",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "W15U": {
+    "short_name": "W15",
+    "long_name": "notturna, piazza Vittorio Veneto - via Brissogne",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "W15BU": {
+    "short_name": "W15B",
+    "long_name": "notturna, piazza Vittorio Veneto - via Brissogne",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  },
+  "W60U": {
+    "short_name": "W60",
+    "long_name": "notturna, piazza Vittorio Veneto - piazza Manno",
+    "agency_id": "U",
+    "color": "FF9900",
+    "text_color": "0000FF"
+  }
+}
