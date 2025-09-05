@@ -154,7 +154,10 @@ class DataLoader {
 		try {
 			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `./public_data/${name}.json`);
 
-			const responses = await Promise.all(endpoints.map((url) => fetch(url).then((r) => r.json())));
+			const responses = await Promise.all(endpoints.map((url) => {
+				
+				return fetch(url).then((r) => r.json())
+			}));
 
 			const [stops, routes, trips, services, shapes] = responses;
 
