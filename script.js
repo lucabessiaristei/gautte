@@ -7,6 +7,7 @@ const CONFIG = {
 	MAX_MAP_ZOOM: 19,
 	CLUSTER_DISABLE_ZOOM: 17,
 	CLUSTER_MAX_RADIUS: 200,
+	BASE_URL: window.location.origin + window.location.pathname.replace(/index\.html$/, ""),
 	ROUTE_COLORS: {
 		direction0: "#c84949",
 		direction1: "#2b70cb",
@@ -152,7 +153,7 @@ map.addLayer(clusters);
 class DataLoader {
 	static async loadAllData() {
 		try {
-			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `/public_data/${name}.json`);
+			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `${CONFIG.BASE_URL}public_data/${name}.json`);
 
 			const responses = await Promise.all(endpoints.map((url) => {
 				console.log(`Loading ${url}`);
