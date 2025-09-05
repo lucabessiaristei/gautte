@@ -155,10 +155,12 @@ class DataLoader {
 		try {
 			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `public_data/${name}.json`);
 
-			const responses = await Promise.all(endpoints.map((url) => {
-				console.log(`Loading ${url}`);
-				return fetch(url).then((r) => r.json())
-			}));
+			const responses = await Promise.all(
+				endpoints.map((url) => {
+					console.log(`Loading ${url}`);
+					return fetch(url).then((r) => r.json());
+				})
+			);
 
 			const [stops, routes, trips, services, shapes] = responses;
 
@@ -391,14 +393,38 @@ class RouteManager {
 
 		const color = direction === "0" ? CONFIG.ROUTE_COLORS.direction0 : CONFIG.ROUTE_COLORS.direction1;
 
-		const polyline = L.polyline(coordinates, {
-			color,
-			weight: 4,
-			opacity: 0.85,
-			offset: 6,
-		}).addTo(map);
+		try {
+			// Convert [lat, lng] → [lng, lat]
+			const line = turf.lineString(coordinates.map((c) => [c[1], c[0]]));
 
-		state.activeShapes.push(polyline);
+			// Apply Turf bezier spline
+			const curved = turf.bezierSpline(line, {
+				resolution: 10000,
+				sharpness: 0.85,
+			});
+
+			// Back to [lat, lng]
+			const smoothedCoords = curved.geometry.coordinates.map((c) => [c[1], c[0]]);
+
+			const polyline = L.polyline(smoothedCoords, {
+				color,
+				weight: 4,
+				opacity: 0.85,
+			}).addTo(map);
+
+			state.activeShapes.push(polyline);
+		} catch (err) {
+			console.error("Turf smoothing failed, fallback:", err);
+
+			const polyline = L.polyline(coordinates, {
+				color,
+				weight: 4,
+				opacity: 0.85,
+			}).addTo(map);
+
+			state.activeShapes.push(polyline);
+		}
+
 		trip.stops?.forEach((stopId) => allStops.add(stopId));
 	}
 
