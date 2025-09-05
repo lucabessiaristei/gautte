@@ -1,3 +1,2 @@
 gtt_gtfs/*.txt filter=lfs diff=lfs merge=lfs -text
 public_data/shapes.json filter=lfs diff=lfs merge=lfs -text
-public_data/*.json filter=lfs diff=lfs merge=lfs -text
