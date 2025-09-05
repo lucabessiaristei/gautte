@@ -152,7 +152,7 @@ map.addLayer(clusters);
 class DataLoader {
 	static async loadAllData() {
 		try {
-			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `/public_data/${name}.json`);
+			const endpoints = ["stops", "routes", "trips", "services", "shapes"].map((name) => `public_data/${name}.json`);
 
 			const responses = await Promise.all(endpoints.map((url) => {
 				
