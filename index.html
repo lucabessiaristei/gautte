@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
   <meta charset="UTF-8" />
   <title>Mappa GTFS – Percorsi + Cluster</title>
@@ -16,20 +15,19 @@
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- MapLibre GL CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" />
+
   <!-- MarkerCluster CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <!-- MapTiler CSS -->
-  <link href="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.css" rel="stylesheet" />
 
   <style>
-    html,
-    body,
-    #map {
+    html, body, #map {
       height: 100%;
       margin: 0;
     }
-
     .toolbar {
       position: absolute;
       top: 1rem;
@@ -58,25 +56,31 @@
     </div>
   </div>
 
-  <!-- JS in fondo -->
-  <!-- Turf -->
+  <!-- === JS in ordine corretto === -->
+
+  <!-- Turf.js (geometrie) -->
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7/turf.min.js"></script>
+
   <!-- Leaflet -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <!-- MapTiler -->
-  <script src="https://cdn.maptiler.com/maptiler-sdk-js/latest/maptiler-sdk.umd.min.js"></script>
-  <script src="https://cdn.maptiler.com/leaflet-maptilersdk/latest/leaflet-maptilersdk.umd.min.js"></script>
+
+  <!-- MapLibre GL -->
+  <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+
+  <!-- Leaflet + MapLibre bridge -->
+  <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+
   <!-- MarkerCluster -->
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster.freezable@1.0.0/dist/leaflet.markercluster.freezable.js"></script>
+
   <!-- Polyline Offset -->
   <script src="./leaflet.polylineoffset.js"></script>
-  <script src="https://unpkg.com/leaflet.curve/leaflet.curve.min.js"></script>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- Script custom -->
-  <script src="./script.js"></script>
+  <script src="./script.js?v=1.2"></script>
 </body>
-
-
 </html>
